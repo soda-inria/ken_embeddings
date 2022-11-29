@@ -24,7 +24,7 @@ def plot_entity_density(n_neighbors):
     plt.axis("off")
     plt.figimage(image, origin="lower", norm=LogNorm(), cmap="hot")
     plt.savefig(
-        repo_dir / f"assets/visualization/umap_nn={n_neighbors}.png",
+        repo_dir / f"assets/figures/umap_nn={n_neighbors}.png",
         pad_inches=0.0,
     )
     return
@@ -98,7 +98,7 @@ def plot_entity_types(n_neighbors):
         framealpha=0,
     )
     plt.savefig(
-        repo_dir / f"assets/visualization/umap_types_nn={n_neighbors}.png",
+        repo_dir / f"assets/figures/umap_types_nn={n_neighbors}.png",
         pad_inches=0.0,
     )
     return
