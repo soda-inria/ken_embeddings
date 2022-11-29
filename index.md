@@ -8,7 +8,7 @@ graph-embedding methods to create feature vectors for each entity. We show that 
 
 We thoroughly evaluate approaches to enrich features with background information on 7 prediction tasks. We show that a good embedding model coupled with KEN can perform better than manually handcrafted features, while requiring much less human effort. It is also competitive with combinatorial feature engineering methods, but is much more scalable. Our approach can be applied to huge databases, creating general-purpose feature vectors reusable in various downstream tasks.
 
-![Drag Racing](./assets/figures/embedding_pipeline.pdf)
+![embedding_pipeline](/ken_embeddings/assets/figures/embedding_pipeline.pdf)
 
 # Enriching features with information from Wikipedia
 
