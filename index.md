@@ -30,9 +30,7 @@ YAGO3 is a large
 
 ### Downloading entity embeddings
 
-some text and [here is possible to download the file in PDF][1]
-
-[1]:{{ site.url }}/assets/data/emb_person.parquet
+<a href="/assets/data/emb_person.parquet" download>Click to Download</a>
 
 # Publications
 
