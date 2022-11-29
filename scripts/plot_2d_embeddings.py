@@ -9,9 +9,9 @@ from scipy.stats import binned_statistic_2d
 repo_dir = Path(__file__).parents[1]
 
 
-def plot_entity_density(n_neighbors):
+def plot_entity_density():
     # Load UMAP embeddings
-    df = pd.read_parquet(repo_dir / f"assets/data/emb_umap_nn={n_neighbors}.parquet")
+    df = pd.read_parquet(repo_dir / f"assets/data/emb_umap_nn=120.parquet")
     x, y = df.pop("X0"), df.pop("X1")
     # Compute 2D histogram and get the bin number for each entity
     n_pixels = 2000
@@ -24,15 +24,15 @@ def plot_entity_density(n_neighbors):
     plt.axis("off")
     plt.figimage(image, origin="lower", norm=LogNorm(), cmap="hot")
     plt.savefig(
-        repo_dir / f"assets/figures/umap_nn={n_neighbors}.png",
+        repo_dir / f"assets/figures/entity_density.png",
         pad_inches=0.0,
     )
     return
 
 
-def plot_entity_types(n_neighbors):
+def plot_entity_types():
     # Load UMAP embeddings
-    df = pd.read_parquet(repo_dir / f"assets/data/emb_umap_nn={n_neighbors}.parquet")
+    df = pd.read_parquet(repo_dir / f"assets/data/emb_umap_nn=120.parquet")
     x, y = df.pop("X0"), df.pop("X1")
     # Compute 2D histogram and get the bin number for each entity
     n_pixels = 2000
@@ -98,7 +98,7 @@ def plot_entity_types(n_neighbors):
         framealpha=0,
     )
     plt.savefig(
-        repo_dir / f"assets/figures/umap_types_nn={n_neighbors}.png",
+        repo_dir / f"assets/figures/entity_types.png",
         pad_inches=0.0,
     )
     return
