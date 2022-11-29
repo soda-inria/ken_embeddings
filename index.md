@@ -19,12 +19,8 @@ We describe in this section how you can enrich your own data with information fr
 
 ### Visualizing entity embeddings
 
-<figure>
-  <img
-  src=/assets/figures/entity_density.png
-  alt="2D visualization of entity embeddings">
-  <figcaption>"2D visualization of entity embeddings learned from YAGO3 (brighter zones correspond to higher entity densities)"</figcaption>
-</figure>
+![entity_density](/assets/figures/entity_density.png)
+*2D visualization of entity embeddings learned from YAGO3 (brighter zones correspond to higher entity densities)*
 
 
 ![entity_types](/assets/figures/entity_types.png)
