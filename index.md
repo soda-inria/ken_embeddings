@@ -11,10 +11,12 @@ graph-embedding methods to create feature vectors for each entity. We show that 
 
 We thoroughly evaluate approaches to enrich features with background information on 7 prediction tasks. We show that a good embedding model coupled with KEN can perform better than manually handcrafted features, while requiring **much less human effort**. It is also competitive with combinatorial feature engineering methods, but is much more **scalable**. Our approach can be applied to huge databases, creating **general-purpose feature vectors reusable in various downstream tasks**.
 
-# Enriching your data with information from Wikipedia
+# Augmenting your data with information from Wikipedia
 
-We describe in this section how you can enrich your own data with information from Wikipedia. For this, we 
+We describe in this section how to augment your data with information from Wikipedia. For this, we leverage [YAGO3](https://yago-knowledge.org/downloads/yago-3), a large knowledge base derived from Wikipedia, and apply our embedding pipeline to generate vectors for many entities. These pretrained embeddings are readily available in parquet files that you can download [here](#downloading-entity-embeddings).
+
 ### Description of YAGO3
+YAGO3 is a large
 
 ### Embedding method
 
@@ -27,6 +29,10 @@ We describe in this section how you can enrich your own data with information fr
 *2D visualization of entity embeddings learned from YAGO3, colored by their types.*
 
 ### Downloading entity embeddings
+
+some text and [here is possible to download the file in PDF][1]
+
+[1]:{{ site.url }}/assets/data/emb_person.parquet
 
 # Publications
 
