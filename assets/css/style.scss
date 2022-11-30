@@ -4,6 +4,6 @@
 @import "{{ site.theme }}";
 
 .page-header {
-    background-image: assets/figures/entity_types.png
+    background-image: url("assets/figures/entity_types.png");
 }
 
