@@ -1,5 +1,5 @@
 
-# Embeddings that add Features with Background Information
+# Embeddings to Bring Background Information
 
 In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
 
@@ -9,11 +9,11 @@ Instead, we provide readily-computed **vectorial representations of entities** (
 
 ## Visualizing these entity embeddings
 
-We show below 2D visualizations of the resulting embeddings, using [UMAP](https://umap-learn.readthedocs.io/en/latest/) to reduce their dimension from 200 to 2. The density of entities in the 2D embedding space reveals many clusters of various sizes that correspond to entities of different types.
-
 
 ![entity_types](assets/figures/entity_types.png)
-*2D visualization of entity embeddings learned from YAGO3, colored by their types.*
+*2D visualization of entity embeddings learned from YAGO3, colored by
+their types. [UMAP](https://umap-learn.readthedocs.io/en/latest/) was
+used to reduce their dimension from 200 to 2.*
 
 ## Downloading the embeddings
 
