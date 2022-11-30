@@ -42,7 +42,7 @@ def plot_entity_types():
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
     df[["BN1", "BN2"]] = binnumber.T - 1
     df_bins = df.copy()
-    
+
     # Join most common entity types to df
     df_types = pd.read_parquet(repo_dir / "assets/data/entity_types.parquet")
     df_types["Type"] = df_types["Type"].str.split("_").str[1:-1].str.join(" ")
@@ -58,13 +58,13 @@ def plot_entity_types():
     df_types = df_types.loc[mask]
     df = df.merge(df_types, on="Entity")
     df = pd.get_dummies(df, columns=["Type"], prefix="", prefix_sep="")
-    
+
     # Group by bin number and take the most frequent category (considering imbalance)
     del df["Entity"]
     df = df.groupby(["BN1", "BN2"]).sum()
     df = df / df.sum()  # Normalize for imbalance
     df = df.idxmax(axis=1)
-    
+
     # Init image with gray pixels where there are entities
     image = np.zeros((n_pixels, n_pixels, 3))
     mask = heatmap > 0
@@ -74,7 +74,7 @@ def plot_entity_types():
         image[ridx, cidx] = types_color[ent_type]
     # Transpose image
     image = np.swapaxes(image, 0, 1)
-    
+
     ### Plot
     fig = plt.figure(figsize=(1, 1), dpi=n_pixels)
     ax = plt.Axes(fig, (0, 0, 1, 1), xticks=[], yticks=[], frameon=False)
@@ -101,27 +101,34 @@ def plot_entity_types():
         "<Marseille>": (-5, 7),
         "<Tokyo>": (-10, 7),
         "<Kyoto>": (0, -30),
-        "<Los_Angeles>": (5, -30),
-        "<San_Francisco>": (-5, 7),
-        #"<New_York>": (-7, 10)
-        # People
+        "<Los_Angeles>": (-10, -30),
+        "<San_Francisco>": (-100, 7),
+        # Politicians
         "<Joe_Biden>": (-10, 10),
         "<Donald_Trump>": (5, -20),
-        "<Angela_Merkel>": (5, -10),
-        "<François_Hollande>": (5, 5),
+        # Football players
         "<Lionel_Messi>": (5, 0),
         "<Cristiano_Ronaldo>": (5, 0),
+        # Artists
+        "<Beyoncé>": (5, -25),
+        "<Rihanna>": (5, 5),
+        # Movies
+        "<Avatar_(2009_film)>": (-10, 10),
+        "<Titanic_(1997_film)>": (5, -20),
+        # Albums
+        "<Thriller_(Michael_Jackson_album)>": (-100, -25),
+        "<Abbey_Road>": (5, -20),
     }
     mask = df_bins["Entity"].isin(entity_shifts.keys())
     for _, ent, x, y in df_bins.loc[mask].itertuples():
         sx, sy = entity_shifts[ent]
         clean_ent = ent[1:-1].replace("_", " ")
+        if "film" in clean_ent or "album" in clean_ent:
+            clean_ent = clean_ent.split(" ")[0]
         ax.scatter(x, y, s=0.07, c="white", edgecolors="none")
         ax.text(x + sx, y + sy, clean_ent, c="white", size=0.5)
     # Save figure
-    plt.savefig(
-        repo_dir / f"assets/figures/entity_types.png",
-    )
+    plt.savefig(repo_dir / f"assets/figures/entity_types.png")
     plt.close()
     return
 
