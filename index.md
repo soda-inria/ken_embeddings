@@ -7,8 +7,6 @@ For instance, estimating housing prices benefits from background information on 
 
 Instead, we provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the corresponding information. 
 
-## Visualizing these entity embeddings
-
 
 ![entity_types](assets/figures/entity_types.png)
 *2D visualization of entity embeddings learned from YAGO3, colored by
