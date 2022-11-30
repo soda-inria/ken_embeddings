@@ -1,5 +1,5 @@
 
-# Relational Data Embeddings for Feature Enrichment with Background Information
+# Embeddings that add Features with Background Information
 
 In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
 
