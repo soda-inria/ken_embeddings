@@ -31,7 +31,7 @@ def plot_entity_density():
 
 
 def plot_entity_types():
-    # Load UMAP embeddings
+    # Load UMAP embeddings and assign entities to bins
     df = pd.read_parquet(repo_dir / f"assets/data/emb_umap_nn=120.parquet")
     x, y = df.pop("X0"), df.pop("X1")
     # Compute 2D histogram and get the bin number for each entity
@@ -41,6 +41,8 @@ def plot_entity_types():
     )
     extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
     df[["BN1", "BN2"]] = binnumber.T - 1
+    df_bins = df.copy()
+    
     # Join most common entity types to df
     df_types = pd.read_parquet(repo_dir / "assets/data/entity_types.parquet")
     df_types["Type"] = df_types["Type"].str.split("_").str[1:-1].str.join(" ")
@@ -56,22 +58,13 @@ def plot_entity_types():
     df_types = df_types.loc[mask]
     df = df.merge(df_types, on="Entity")
     df = pd.get_dummies(df, columns=["Type"], prefix="", prefix_sep="")
+    
     # Group by bin number and take the most frequent category (considering imbalance)
     del df["Entity"]
     df = df.groupby(["BN1", "BN2"]).sum()
     df = df / df.sum()  # Normalize for imbalance
-    # # Filter bins with too few entities # Not really useful
-    # threshold = 0.9
-    # mask = np.zeros(len(df), dtype=np.bool)
-    # for col in df.columns:
-    #     perc = np.sort(df[col])
-    #     cumsum = perc.cumsum()
-    #     idx = np.searchsorted(cumsum, 1 - threshold)
-    #     th_perc = perc[idx]
-    #     mask += (df[col] >= th_perc).to_numpy()
-    # df = df.loc[mask]
     df = df.idxmax(axis=1)
-    ### Build image
+    
     # Init image with gray pixels where there are entities
     image = np.zeros((n_pixels, n_pixels, 3))
     mask = heatmap > 0
@@ -81,26 +74,55 @@ def plot_entity_types():
         image[ridx, cidx] = types_color[ent_type]
     # Transpose image
     image = np.swapaxes(image, 0, 1)
+    
     ### Plot
     fig = plt.figure(figsize=(1, 1), dpi=n_pixels)
-    plt.axis("off")
-    plt.figimage(image, origin="lower")
+    ax = plt.Axes(fig, (0, 0, 1, 1), xticks=[], yticks=[], frameon=False)
+    ax.set_xlim(0, 2000)
+    ax.set_ylim(0, 2000)
+    fig.add_axes(ax)
+    ax.imshow(image, origin="lower")
     # Add legend
     patches = [
         mpatches.Patch(color=c, label=l.replace(" ", " "))
         for l, c in types_color.items()
     ]
-    fig.legend(
+    ax.legend(
         handles=patches[::-1],
         loc=(0, 0),
         prop={"size": 1.3},
         labelcolor="white",
         framealpha=0,
     )
+    # Add some entities
+    entity_shifts = {
+        # Cities
+        "<Paris>": (-5, -30),
+        "<Marseille>": (-5, 7),
+        "<Tokyo>": (-10, 7),
+        "<Kyoto>": (0, -30),
+        "<Los_Angeles>": (5, -30),
+        "<San_Francisco>": (-5, 7),
+        #"<New_York>": (-7, 10)
+        # People
+        "<Joe_Biden>": (-10, 10),
+        "<Donald_Trump>": (5, -20),
+        "<Angela_Merkel>": (5, -10),
+        "<François_Hollande>": (5, 5),
+        "<Lionel_Messi>": (5, 0),
+        "<Cristiano_Ronaldo>": (5, 0),
+    }
+    mask = df_bins["Entity"].isin(entity_shifts.keys())
+    for _, ent, x, y in df_bins.loc[mask].itertuples():
+        sx, sy = entity_shifts[ent]
+        clean_ent = ent[1:-1].replace("_", " ")
+        ax.scatter(x, y, s=0.07, c="white", edgecolors="none")
+        ax.text(x + sx, y + sy, clean_ent, c="white", size=0.5)
+    # Save figure
     plt.savefig(
         repo_dir / f"assets/figures/entity_types.png",
-        pad_inches=0.0,
     )
+    plt.close()
     return
 
 
@@ -201,3 +223,14 @@ def plot_entity_types():
 #         repo_dir / f"assets/visualization/umap_types_nn={n_neighbors}.png",
 #         # pad_inches=0,
 #     )
+
+# # Filter bins with too few entities # Not really useful
+# threshold = 0.9
+# mask = np.zeros(len(df), dtype=np.bool)
+# for col in df.columns:
+#     perc = np.sort(df[col])
+#     cumsum = perc.cumsum()
+#     idx = np.searchsorted(cumsum, 1 - threshold)
+#     th_perc = perc[idx]
+#     mask += (df[col] >= th_perc).to_numpy()
+# df = df.loc[mask]
