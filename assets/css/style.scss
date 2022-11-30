@@ -5,6 +5,8 @@
 
 .page-header {
     background-image: url("{{ '/assets/figures/entity_types.png' | relative_url }}");
+    background-size: 100%; 
+    background-color: rgba(0,0,0);
 }
 
 .btn {
