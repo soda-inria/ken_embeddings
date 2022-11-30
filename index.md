@@ -3,7 +3,7 @@
 
 In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
 
-For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in a knowledge source such as wikipedia, but assembling it across the many tables into numerical features can be tedious.
+For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in a knowledge source such as wikipedia, but assembling it across many tables into numerical features can be tedious.
 
 Instead, we provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the corresponding information. 
 
@@ -35,7 +35,7 @@ graph-embedding methods to create feature vectors for each entity. We show that 
 
 We thoroughly evaluate approaches to enrich features with background information on 7 prediction tasks. We show that a good embedding model coupled with KEN can perform better than manually handcrafted features, while requiring **much less human effort**. It is also competitive with combinatorial feature engineering methods, but is much more **scalable**. Our approach can be applied to huge databases, creating **general-purpose feature vectors reusable in various downstream tasks**.
 
-## Embeddings the data in Wikipedia
+## Embedding the data in Wikipedia
 
 To build embeddings that capture the information from Wikipedia we leverage [YAGO3](https://yago-knowledge.org/downloads/yago-3), a large knowledge base derived from Wikipedia, and apply our embedding pipeline to generate vectors for many entities. These pretrained embeddings are readily available in parquet files that you can download [here](#downloading-entity-embeddings).
 
