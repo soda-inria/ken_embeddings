@@ -7,3 +7,7 @@
     background-image: url("{{ '/assets/figures/entity_types.png' | relative_url }}");
 }
 
+.btn {
+    color:rgba(255,255,255,0.9);
+    background-color:rgba(0,0,0,0.6);
+}
