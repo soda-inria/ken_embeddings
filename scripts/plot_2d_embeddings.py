@@ -43,19 +43,32 @@ def plot_entity_types(add_entities: bool):
     df[["BN1", "BN2"]] = binnumber.T - 1
     df_bins = df.copy()
 
-    # Join most common entity types to df
+    ### Join most common entity types to df
     df_types = pd.read_parquet(repo_dir / "assets/data/entity_types.parquet")
-    df_types["Type"] = df_types["Type"].str.split("_").str[1:-1].str.join(" ")
-    types_color = {
-        "administrative district": (1, 0.5, 0),  # Orange
-        "person": (0, 0, 1),  # Blue
-        "artist": (0, 1, 1),  # Cyan
-        "album": (1, 1, 0),  # Yellow
+    # Filter only the types we want
+    clean_types = {
+        "<wordnet_person_100007846>": "person",
+        "<yagoGeoEntity>": "location",
+        "<wordnet_album_106591815>": "album",
+        "<wordnet_movie_106613686>": "movie",
+        "<wordnet_company_108058098>": "company",
+        "<wordnet_school_108276720>": "school",
+    }
+    mask = df_types["Type"].isin(clean_types.keys())
+    df_types = df_types[mask].copy()
+    df_types["Type"] = df_types["Type"].map(clean_types)
+    
+    # Include subtypes into more common types
+    type_colors = {
+        "location": (1, 0.5, 0),  # Orange
+        "person": (0.1, 0.4, 1),  # Blue
+        "album": (0.9, 0.9, 0),  # Yellow
         "movie": (0, 1, 0),  # Green
         "company": (1, 0, 0),  # Red
+        "school": (0.5, 0, 1), # Purple
     }
-    mask = df_types["Type"].isin(list(types_color.keys()))
-    df_types = df_types.loc[mask]
+    mask = df_types["Type"].isin(list(type_colors.keys()))
+    df_types = df_types.loc[mask].copy()
     df = df.merge(df_types, on="Entity")
     df = pd.get_dummies(df, columns=["Type"], prefix="", prefix_sep="")
 
@@ -71,7 +84,7 @@ def plot_entity_types(add_entities: bool):
     image[mask] = (0.2, 0.2, 0.2)  # Light gray
     # Color each bin according to its type
     for (ridx, cidx), ent_type in df.iteritems():
-        image[ridx, cidx] = types_color[ent_type]
+        image[ridx, cidx] = type_colors[ent_type]
     # Transpose image
     image = np.swapaxes(image, 0, 1)
 
@@ -85,10 +98,10 @@ def plot_entity_types(add_entities: bool):
     # Add legend
     patches = [
         mpatches.Patch(color=c, label=l.replace(" ", " "))
-        for l, c in types_color.items()
+        for l, c in type_colors.items()
     ]
     ax.legend(
-        handles=patches[::-1],
+        handles=patches,
         loc=(0, 0),
         prop={"size": 1.3},
         labelcolor="white",
@@ -96,13 +109,21 @@ def plot_entity_types(add_entities: bool):
     )
     # Add some entities
     entity_shifts = {
-        # Cities
+        # Locations
         "<Paris>": (-5, -30),
-        "<Marseille>": (-5, 7),
-        "<Tokyo>": (-10, 7),
-        "<Kyoto>": (0, -30),
-        "<Los_Angeles>": (-10, -30),
-        "<San_Francisco>": (-100, 7),
+        "<France>": (-5, 8),
+        "<Japan>": (-30, -30),
+        "<United_States>": (-190, -25),
+        "<Berlin>": (-10, -30),
+        "<Germany>": (5, 0),
+        "<Rome>": (5, -20),
+        "<Italy>": (-5, 10),
+        "<United_Kingdom>": (5, 0),
+        "<India>": (8, -20),
+        "<Brazil>": (8, -3),
+        "<Argentina>": (8, -7),
+        "<China>": (5, 0),
+        "<Russia>": (8, -10),
         # Politicians
         "<Joe_Biden>": (-10, 10),
         "<Donald_Trump>": (5, -20),
@@ -110,21 +131,32 @@ def plot_entity_types(add_entities: bool):
         "<Lionel_Messi>": (5, 0),
         "<Cristiano_Ronaldo>": (5, 0),
         # Artists
-        "<Beyoncé>": (5, -25),
-        "<Rihanna>": (5, 5),
+        "<Freddie_Mercury>": (-20, -30),
+        "<Michael_Jackson>": (-5, 8),
         # Movies
-        "<Avatar_(2009_film)>": (-10, 10),
-        "<Titanic_(1997_film)>": (5, -20),
+        "<Avatar_(2009_film)>": (5, 18),
+        "<Titanic_(1997_film)>": (15, -15),
         # Albums
-        "<Thriller_(Michael_Jackson_album)>": (-100, -25),
+        "<Thriller_(Michael_Jackson_album)>": (-95, -30),
         "<Abbey_Road>": (5, -20),
+        # Companies
+        "<Google>": (5, 5),
+        "<Apple_Inc.>": (5, -25),
+        # Scientists
+        "<Max_Planck>": (5, 0),
+        "<Isaac_Newton>": (5, 0),
+        # Universities
+        "<University_of_Oxford>": (5, 0),
+        "<Harvard_University>": (5, 0),
+        "<Peking_University>": (-10, -30),
+        
     }
     if add_entities:
         mask = df_bins["Entity"].isin(entity_shifts.keys())
         for _, ent, x, y in df_bins.loc[mask].itertuples():
             sx, sy = entity_shifts[ent]
             clean_ent = ent[1:-1].replace("_", " ")
-            if "film" in clean_ent or "album" in clean_ent:
+            if any(s in clean_ent for s in ["film", "album", "Inc."]):
                 clean_ent = clean_ent.split(" ")[0]
             ax.scatter(x, y, s=0.07, c="white", edgecolors="none")
             ax.text(x + sx, y + sy, clean_ent, c="white", size=0.5)
