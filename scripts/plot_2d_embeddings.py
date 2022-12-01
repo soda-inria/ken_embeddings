@@ -30,7 +30,7 @@ def plot_entity_density():
     return
 
 
-def plot_entity_types():
+def plot_entity_types(add_entities: bool):
     # Load UMAP embeddings and assign entities to bins
     df = pd.read_parquet(repo_dir / f"assets/data/emb_umap_nn=120.parquet")
     x, y = df.pop("X0"), df.pop("X1")
@@ -119,16 +119,19 @@ def plot_entity_types():
         "<Thriller_(Michael_Jackson_album)>": (-100, -25),
         "<Abbey_Road>": (5, -20),
     }
-    mask = df_bins["Entity"].isin(entity_shifts.keys())
-    for _, ent, x, y in df_bins.loc[mask].itertuples():
-        sx, sy = entity_shifts[ent]
-        clean_ent = ent[1:-1].replace("_", " ")
-        if "film" in clean_ent or "album" in clean_ent:
-            clean_ent = clean_ent.split(" ")[0]
-        ax.scatter(x, y, s=0.07, c="white", edgecolors="none")
-        ax.text(x + sx, y + sy, clean_ent, c="white", size=0.5)
-    # Save figure
-    plt.savefig(repo_dir / f"assets/figures/entity_types.png")
+    if add_entities:
+        mask = df_bins["Entity"].isin(entity_shifts.keys())
+        for _, ent, x, y in df_bins.loc[mask].itertuples():
+            sx, sy = entity_shifts[ent]
+            clean_ent = ent[1:-1].replace("_", " ")
+            if "film" in clean_ent or "album" in clean_ent:
+                clean_ent = clean_ent.split(" ")[0]
+            ax.scatter(x, y, s=0.07, c="white", edgecolors="none")
+            ax.text(x + sx, y + sy, clean_ent, c="white", size=0.5)
+        # Save figure
+        plt.savefig(repo_dir / f"assets/figures/entity_types_with_names.png")
+    else:
+        plt.savefig(repo_dir / f"assets/figures/entity_types.png")
     plt.close()
     return
 
