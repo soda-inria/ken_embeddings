@@ -112,7 +112,7 @@ def plot_entity_types(add_entities: bool):
         # Locations
         "<Paris>": (-5, -30),
         "<France>": (-5, 8),
-        "<Japan>": (-30, -30),
+        "<Japan>": (0, -30),
         "<United_States>": (-190, -25),
         "<Berlin>": (-10, -30),
         "<Germany>": (5, 0),
@@ -142,6 +142,7 @@ def plot_entity_types(add_entities: bool):
         # Companies
         "<Google>": (5, 5),
         "<Apple_Inc.>": (5, -25),
+        "<Toyota>": (-5, 10),
         # Scientists
         "<Max_Planck>": (5, 0),
         "<Isaac_Newton>": (5, 0),
