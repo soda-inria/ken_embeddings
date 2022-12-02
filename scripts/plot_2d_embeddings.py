@@ -144,7 +144,7 @@ def plot_entity_types(add_entities: bool):
         "<Apple_Inc.>": (5, -25),
         "<Toyota>": (-5, 10),
         # Scientists
-        "<Isaac_Newton>": (5, 0),
+        "<Isaac_Newton>": (-35, -30),
         "<Galileo_Galilei>": (5, 0),
         # Universities
         "<University_of_Oxford>": (5, 0),
