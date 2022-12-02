@@ -17,13 +17,17 @@ used to reduce their dimension from 200 to 2.*
 
 We give different tables for the embeddings of entities of various types:
 
-* [administrative districts](assets/data/emb_administrative_district.parquet)
-* [people](assets/data/emb_person.parquet)
-* [artists](assets/data/emb_artist.parquet)
-* [albums](assets/data/emb_album.parquet)
-* [movies](assets/data/emb_movie.parquet)
-* [companies](assets/data/emb_company.parquet).
+* [locations](https://figshare.com/ndownloader/files/38409968)
+* [people](https://figshare.com/ndownloader/files/38410013)
+* [albums](https://figshare.com/ndownloader/files/38409785)
+* [movies](https://figshare.com/ndownloader/files/38409971)
+* [companies](https://figshare.com/ndownloader/files/38409947).
+* [schools](https://figshare.com/ndownloader/files/38410016)
 
+We also provide tables with embeddings for *all* entities (2.8 million), as well as their types:
+
+* [all_entities](https://figshare.com/ndownloader/files/38409944)
+* [entity_types](https://figshare.com/ndownloader/files/38410025)
 
 # How are these embeddings built?
 
