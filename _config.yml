@@ -22,11 +22,13 @@ url: "soda-inria.github.io" # the base hostname & protocol for your site, e.g. h
 github_username:  soda-inria
 repository: soda-inria/ken_embeddings
 
+## Comment out the github right now, because people think that it is the
+## github of the code of KEN
 github:
-  is_project_page: true
-  repository_url: https://github.com/soda-inria/ken_embeddings
-  owner_name: soda-inria
-  owner_url: https://github.com/soda-inria
+  is_project_page: false
+#  repository_url: https://github.com/soda-inria/ken_embeddings
+#  owner_name: soda-inria
+#  owner_url: https://github.com/soda-inria
 
 papers:
   - name: Preprint paper
