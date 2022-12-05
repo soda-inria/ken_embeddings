@@ -3,9 +3,9 @@
 
 In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
 
-For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in a knowledge source such as wikipedia, but assembling it across many tables into numerical features can be tedious.
+For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in a knowledge source such as wikipedia. But assembling features that summarize the information across those many tables is tedious manual work, which we seek to replace.
 
-Instead, we provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the corresponding information. 
+We provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the information that can be aggregated across wikipedia. 
 
 
 ![entity_types](assets/figures/entity_types_with_names.png)
