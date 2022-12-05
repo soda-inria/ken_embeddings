@@ -112,7 +112,7 @@ def plot_entity_types(add_entities: bool):
         # Locations
         "<Paris>": (-5, -30),
         "<France>": (-5, 8),
-        "<Japan>": (-10, -30),
+        "<Japan>": (-20, -30),
         "<United_States>": (-190, -25),
         "<Berlin>": (-10, -30),
         "<Germany>": (5, 0),
@@ -141,8 +141,6 @@ def plot_entity_types(add_entities: bool):
         "<The_Intouchables>": (-3, 15),
         "<Downfall_(2004_film)>": (-120, 5),
         "<Das_Boot>": (-70, -30),
-        "<Life_Is_Beautiful>": (-30, -30),
-        "<La_Dolce_Vita>": (3, 3),
         "<Shaolin_Soccer>": (7, -50),
         # Albums
         "<Thriller_(Michael_Jackson_album)>": (-95, -30),
