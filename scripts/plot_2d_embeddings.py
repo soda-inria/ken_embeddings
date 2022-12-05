@@ -112,17 +112,18 @@ def plot_entity_types(add_entities: bool):
         # Locations
         "<Paris>": (-5, -30),
         "<France>": (-5, 8),
-        "<Japan>": (0, -30),
+        "<Japan>": (-10, -30),
         "<United_States>": (-190, -25),
         "<Berlin>": (-10, -30),
         "<Germany>": (5, 0),
         "<Rome>": (5, -20),
         "<Italy>": (-5, 10),
-        "<United_Kingdom>": (5, 0),
+        "<United_Kingdom>": (5, -25),
+        "<London>": (-108, 0),
         "<India>": (8, -20),
         "<Brazil>": (8, -3),
         "<Argentina>": (8, -7),
-        "<China>": (5, 0),
+        "<China>": (2, 5),
         "<Russia>": (8, -10),
         # Politicians
         "<Joe_Biden>": (-10, 10),
@@ -136,6 +137,13 @@ def plot_entity_types(add_entities: bool):
         # Movies
         "<Avatar_(2009_film)>": (5, 18),
         "<Titanic_(1997_film)>": (15, -15),
+        "<Amélie>": (-105, -40),
+        "<The_Intouchables>": (-3, 15),
+        "<Downfall_(2004_film)>": (-120, 5),
+        "<Das_Boot>": (-70, -30),
+        "<Life_Is_Beautiful>": (-30, -30),
+        "<La_Dolce_Vita>": (3, 3),
+        "<Shaolin_Soccer>": (7, -50),
         # Albums
         "<Thriller_(Michael_Jackson_album)>": (-95, -30),
         "<Abbey_Road>": (5, -20),
@@ -147,10 +155,9 @@ def plot_entity_types(add_entities: bool):
         "<Isaac_Newton>": (-35, -30),
         "<Galileo_Galilei>": (5, 0),
         # Universities
-        "<University_of_Oxford>": (5, 0),
+        "<University_of_Oxford>": (0, -30),
         "<Harvard_University>": (5, 0),
         "<Peking_University>": (-10, -30),
-        
     }
     if add_entities:
         mask = df_bins["Entity"].isin(entity_shifts.keys())
@@ -159,6 +166,12 @@ def plot_entity_types(add_entities: bool):
             clean_ent = ent[1:-1].replace("_", " ")
             if any(s in clean_ent for s in ["film", "album", "Inc."]):
                 clean_ent = clean_ent.split(" ")[0]
+            elif ent == "<Amélie>":
+                clean_ent = "Amélie\nPoulain"
+            elif ent == "<The_Intouchables>":
+                clean_ent = "Intouchables"
+            elif ent == "<Shaolin_Soccer>":
+                clean_ent = "Shaolin\nSoccer"
             ax.scatter(x, y, s=0.07, c="white", edgecolors="none")
             ax.text(x + sx, y + sy, clean_ent, c="white", size=0.5)
         # Save figure
