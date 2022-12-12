@@ -18,4 +18,5 @@ img.flush-left {
     float: right;
     width: 40%;
     max-width: 25ex;
+    margin-right: clamp(-35ex, calc(10ex - 10vw), 0ex);
 }
