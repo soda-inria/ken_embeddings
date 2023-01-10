@@ -17,7 +17,8 @@ used to reduce their dimension from 200 to 2.*
 
 ## Downloading the embeddings
 
-We give different tables for the embeddings of entities of various types:
+We give different tables for the embeddings of entities of various types
+(under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)):
 
 * [locations](https://figshare.com/ndownloader/files/38409968)
 * [people](https://figshare.com/ndownloader/files/38410013)
