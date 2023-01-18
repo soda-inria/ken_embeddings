@@ -31,6 +31,7 @@ We also provide tables with embeddings for *all* entities (2.8 million), as well
 
 * [all_entities](https://figshare.com/ndownloader/files/38409944)
 * [entity_types](https://figshare.com/ndownloader/files/38410025)
+* [entity_detailed_types](https://figshare.com/ndownloader/files/38879442)
 
 # How are these embeddings built?
 
