@@ -30,7 +30,7 @@ def plot_entity_density():
     return
 
 
-def plot_entity_types(add_entities: bool):
+def plot_entity_types(add_entities: bool, add_legend: bool):
     # Load UMAP embeddings and assign entities to bins
     df = pd.read_parquet(repo_dir / f"assets/data/emb_umap_nn=120.parquet")
     x, y = df.pop("X0"), df.pop("X1")
@@ -57,7 +57,7 @@ def plot_entity_types(add_entities: bool):
     mask = df_types["Type"].isin(clean_types.keys())
     df_types = df_types[mask].copy()
     df_types["Type"] = df_types["Type"].map(clean_types)
-    
+
     # Include subtypes into more common types
     type_colors = {
         "location": (1, 0.5, 0),  # Orange
@@ -65,7 +65,7 @@ def plot_entity_types(add_entities: bool):
         "album": (0.9, 0.9, 0),  # Yellow
         "movie": (0, 1, 0),  # Green
         "company": (1, 0, 0),  # Red
-        "school": (0.5, 0, 1), # Purple
+        "school": (0.5, 0, 1),  # Purple
     }
     mask = df_types["Type"].isin(list(type_colors.keys()))
     df_types = df_types.loc[mask].copy()
@@ -96,68 +96,69 @@ def plot_entity_types(add_entities: bool):
     fig.add_axes(ax)
     ax.imshow(image, origin="lower")
     # Add legend
-    patches = [
-        mpatches.Patch(color=c, label=l.replace(" ", " "))
-        for l, c in type_colors.items()
-    ]
-    ax.legend(
-        handles=patches,
-        loc=(0, 0),
-        prop={"size": 1.3},
-        labelcolor="white",
-        framealpha=0,
-    )
+    if add_legend:
+        patches = [
+            mpatches.Patch(color=c, label=l.replace(" ", " "))
+            for l, c in type_colors.items()
+        ]
+        ax.legend(
+            handles=patches,
+            loc=(0, 0),
+            prop={"size": 1.3},
+            labelcolor="white",
+            framealpha=0,
+        )
     # Add some entities
-    entity_shifts = {
-        # Locations
-        "<Paris>": (-5, -30),
-        "<France>": (-5, 8),
-        "<Japan>": (-20, -30),
-        "<United_States>": (-190, -25),
-        "<Berlin>": (-10, -30),
-        "<Germany>": (5, 0),
-        "<Rome>": (5, -20),
-        "<Italy>": (-5, 10),
-        "<United_Kingdom>": (5, -25),
-        "<London>": (-108, 0),
-        "<India>": (8, -20),
-        "<Brazil>": (8, -3),
-        "<Argentina>": (8, -7),
-        "<China>": (2, 5),
-        "<Russia>": (8, -10),
-        # Politicians
-        "<Joe_Biden>": (-10, 10),
-        "<Donald_Trump>": (5, -20),
-        # Football players
-        "<Lionel_Messi>": (5, 0),
-        "<Cristiano_Ronaldo>": (5, 0),
-        # Artists
-        "<Freddie_Mercury>": (-20, -30),
-        "<Michael_Jackson>": (-5, 8),
-        # Movies
-        "<Avatar_(2009_film)>": (5, 18),
-        "<Titanic_(1997_film)>": (15, -15),
-        "<Amélie>": (-105, -40),
-        "<The_Intouchables>": (-3, 15),
-        "<Downfall_(2004_film)>": (-120, 5),
-        "<Das_Boot>": (-70, -30),
-        "<Shaolin_Soccer>": (7, -50),
-        # Albums
-        "<Thriller_(Michael_Jackson_album)>": (-95, -30),
-        "<Abbey_Road>": (5, -20),
-        # Companies
-        "<Google>": (5, 5),
-        "<Apple_Inc.>": (5, -25),
-        "<Toyota>": (-5, 10),
-        # Scientists
-        "<Isaac_Newton>": (-35, -30),
-        "<Galileo_Galilei>": (5, 0),
-        # Universities
-        "<University_of_Oxford>": (0, -30),
-        "<Harvard_University>": (5, 0),
-        "<Peking_University>": (-10, -30),
-    }
     if add_entities:
+        entity_shifts = {
+            # Locations
+            "<Paris>": (-5, -30),
+            "<France>": (-5, 8),
+            "<Japan>": (-20, -30),
+            "<United_States>": (-190, -25),
+            "<Berlin>": (-10, -30),
+            "<Germany>": (5, 0),
+            "<Rome>": (5, -20),
+            "<Italy>": (-5, 10),
+            "<United_Kingdom>": (5, -25),
+            "<London>": (-108, 0),
+            "<India>": (8, -20),
+            "<Brazil>": (8, -3),
+            "<Argentina>": (8, -7),
+            "<China>": (2, 5),
+            "<Russia>": (8, -10),
+            # Politicians
+            "<Joe_Biden>": (-10, 10),
+            "<Donald_Trump>": (5, -20),
+            # Football players
+            "<Lionel_Messi>": (5, 0),
+            "<Cristiano_Ronaldo>": (5, 0),
+            # Artists
+            "<Freddie_Mercury>": (-20, -30),
+            "<Michael_Jackson>": (-5, 8),
+            # Movies
+            "<Avatar_(2009_film)>": (5, 18),
+            "<Titanic_(1997_film)>": (15, -15),
+            "<Amélie>": (-105, -40),
+            "<The_Intouchables>": (-3, 15),
+            "<Downfall_(2004_film)>": (-120, 5),
+            "<Das_Boot>": (-70, -30),
+            "<Shaolin_Soccer>": (7, -50),
+            # Albums
+            "<Thriller_(Michael_Jackson_album)>": (-95, -30),
+            "<Abbey_Road>": (5, -20),
+            # Companies
+            "<Google>": (5, 5),
+            "<Apple_Inc.>": (5, -25),
+            "<Toyota>": (-5, 10),
+            # Scientists
+            "<Isaac_Newton>": (-35, -30),
+            "<Galileo_Galilei>": (5, 0),
+            # Universities
+            "<University_of_Oxford>": (0, -30),
+            "<Harvard_University>": (5, 0),
+            "<Peking_University>": (-10, -30),
+        }
         mask = df_bins["Entity"].isin(entity_shifts.keys())
         for _, ent, x, y in df_bins.loc[mask].itertuples():
             sx, sy = entity_shifts[ent]
@@ -174,8 +175,14 @@ def plot_entity_types(add_entities: bool):
             ax.text(x + sx, y + sy, clean_ent, c="white", size=0.5)
         # Save figure
         plt.savefig(repo_dir / f"assets/figures/entity_types_with_names.png")
-    else:
-        plt.savefig(repo_dir / f"assets/figures/entity_types.png")
+    # Save figure
+    fig_dir = repo_dir / "assets/figures"
+    if not (add_legend or add_entities):
+        plt.savefig(fig_dir / "entities.png")
+    elif add_entities and (not add_legend):
+        plt.savefig(fig_dir / "entities_with_names.png")
+    elif add_entities and add_legend:
+        plt.savefig(fig_dir / "entities_with_names_and_legend.png")
     plt.close()
     return
 
