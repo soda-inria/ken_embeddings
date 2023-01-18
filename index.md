@@ -3,6 +3,8 @@
 
 In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
 
+<img class="flush-left" src="assets/figures/aggregating.svg"/>
+
 For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in a knowledge source such as wikipedia. But assembling features that summarize the information across those many tables is tedious manual work, which we seek to replace.
 
 We provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the information that can be aggregated across wikipedia. 
@@ -15,7 +17,8 @@ used to reduce their dimension from 200 to 2.*
 
 ## Downloading the embeddings
 
-We give different tables for the embeddings of entities of various types:
+We give different tables for the embeddings of entities of various types
+(under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)):
 
 * [locations](https://figshare.com/ndownloader/files/38409968)
 * [people](https://figshare.com/ndownloader/files/38410013)

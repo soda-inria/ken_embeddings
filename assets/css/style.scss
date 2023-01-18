@@ -13,3 +13,10 @@
     color: rgba(255,255,255,0.9);
     background-color: rgba(0,0,0,0.6);
 }
+
+img.flush-left {
+    float: right;
+    width: 40%;
+    max-width: 30ex;
+    margin-right: clamp(-30ex, calc(15ex - 15vw), 0ex);
+}
