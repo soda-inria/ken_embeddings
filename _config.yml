@@ -31,8 +31,10 @@ github:
 #  owner_url: https://github.com/soda-inria
 
 papers:
-  - name: Preprint paper
+  - name: Preprint
     url: https://hal.archives-ouvertes.fr/hal-03848124/
+  - name: Published paper
+    url: https://link.springer.com/article/10.1007/s10994-022-06277-7
 
 
 # Build settings
