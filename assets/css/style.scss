@@ -44,10 +44,15 @@ div.flex-highlight {
   padding: .5ex;
 }
 
-@media only screen and (min-width: 1100px) {
+.main-content h1:first-of-type {
+    margin-top: 0px;
+}
+
+@media only screen and (min-width: 1300px) {
     div.flex-container {
 	position: absolute;
-	left: 2ex;
-	width: 20ex;
+	left: calc(20vw - 29ex);
+	min-width: 20ex;
+	width: 19vw;
     }
 }
