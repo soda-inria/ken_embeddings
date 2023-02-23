@@ -20,3 +20,21 @@ img.flush-left {
     max-width: 30ex;
     margin-right: clamp(-30ex, calc(15ex - 15vw), 0ex);
 }
+
+/* The highlight divs */
+div.flex-container {
+  align-content: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+}
+
+div.flex-highlight {
+  background-color: #fdfdfd;
+  border: 1px solid #d4d4d4;
+  margin: 1ex auto;
+  border-radius: 1ex 1ex 0ex 0ex;
+  max-width: 100%;
+  width: 10ex;
+  display: inline-block;
+}

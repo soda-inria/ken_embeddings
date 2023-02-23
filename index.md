@@ -9,6 +9,14 @@ For instance, estimating housing prices benefits from background information on 
 
 We provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the information that can be aggregated across wikipedia. 
 
+<div class="flex-container">
+<div class="flex-highlight">
+    Cities, companies, people..
+</div>
+<div class="flex-highlight">
+    5.8 million entities
+</div>
+</div>
 
 ![entity_types](assets/figures/entity_types_with_names.png)
 *2D visualization of entity embeddings learned from YAGO3, colored by
