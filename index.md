@@ -1,14 +1,6 @@
 
 # Embeddings to Bring Background Information
 
-In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
-
-<img class="flush-left" src="assets/figures/aggregating.svg"/>
-
-For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in a knowledge source such as wikipedia. But assembling features that summarize the information across those many tables is tedious manual work, which we seek to replace.
-
-We provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the information that can be aggregated across wikipedia. 
-
 <div class="flex-container">
 <div class="flex-highlight">
     Cities, companies, people..
@@ -17,6 +9,15 @@ We provide readily-computed **vectorial representations of entities** (*e.g.* ci
     5.8 million entities
 </div>
 </div>
+
+
+In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
+
+<img class="flush-left" src="assets/figures/aggregating.svg"/>
+
+For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in a knowledge source such as wikipedia. But assembling features that summarize the information across those many tables is tedious manual work, which we seek to replace.
+
+We provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the information that can be aggregated across wikipedia. 
 
 ![entity_types](assets/figures/entity_types_with_names.png)
 *2D visualization of entity embeddings learned from YAGO3, colored by

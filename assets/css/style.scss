@@ -30,11 +30,15 @@ div.flex-container {
 }
 
 div.flex-highlight {
-  background-color: #fdfdfd;
   border: 1px solid #d4d4d4;
+  background-color: #159957;
+  color: #FFF;
   margin: 1ex auto;
-  border-radius: 1ex 1ex 0ex 0ex;
+  margin-top: 1ex !important; /* Override a first-child setting of the theme */
+  border-radius: 1ex;
   max-width: 100%;
-  width: 10ex;
+  width: 25ex;
   display: inline-block;
+  text-align: center;
+  height: 1.8em;
 }
