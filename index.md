@@ -26,7 +26,7 @@ We give different tables for the embeddings of entities of various types
 * [schools](https://figshare.com/ndownloader/files/39149075)
 * [games](https://figshare.com/ndownloader/files/39254360)
 
-We also provide tables with embeddings for *all* entities (5.7 million), as well as their types:
+We also provide tables with embeddings for *all* entities **(5.7 million)**, as well as their types:
 
 * [all_entities](https://figshare.com/ndownloader/files/39142985)
 * [entity_types](https://figshare.com/ndownloader/files/39143015)
