@@ -41,6 +41,8 @@ We also provide tables with embeddings for *all* entities **(5.7 million)**, as 
 * [entity_types](https://figshare.com/ndownloader/files/39143015)
 * [entity_detailed_types](https://figshare.com/ndownloader/files/39266300)
 
+[Example Python code to query and use these](https://dirty-cat.github.io/stable/auto_examples/07_ken_embeddings_example.html)
+
 # How are these embeddings built?
 
 We represent the relational data on the entities as a **graph** and adapt
