@@ -20,18 +20,17 @@ used to reduce their dimension from 200 to 2.*
 We give different tables for the embeddings of entities of various types
 (under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)):
 
-* [locations](https://figshare.com/ndownloader/files/38409968)
-* [people](https://figshare.com/ndownloader/files/38410013)
-* [albums](https://figshare.com/ndownloader/files/38409785)
-* [movies](https://figshare.com/ndownloader/files/38409971)
-* [companies](https://figshare.com/ndownloader/files/38409947).
-* [schools](https://figshare.com/ndownloader/files/38410016)
+* [albums](https://figshare.com/ndownloader/files/39149066)
+* [movies](https://figshare.com/ndownloader/files/39149069)
+* [companies](https://figshare.com/ndownloader/files/39149072)
+* [schools](https://figshare.com/ndownloader/files/39149075)
+* [games](https://figshare.com/ndownloader/files/39254360)
 
-We also provide tables with embeddings for *all* entities (2.8 million), as well as their types:
+We also provide tables with embeddings for *all* entities **(5.7 million)**, as well as their types:
 
-* [all_entities](https://figshare.com/ndownloader/files/38409944)
-* [entity_types](https://figshare.com/ndownloader/files/38410025)
-* [entity_detailed_types](https://figshare.com/ndownloader/files/38879442)
+* [all_entities](https://figshare.com/ndownloader/files/39142985)
+* [entity_types](https://figshare.com/ndownloader/files/39143015)
+* [entity_detailed_types](https://figshare.com/ndownloader/files/39266300)
 
 # How are these embeddings built?
 
@@ -45,13 +44,11 @@ We thoroughly evaluate approaches to enrich features with background information
 
 ## Embedding the data in Wikipedia
 
-To build embeddings that capture the information from Wikipedia we leverage [YAGO3](https://yago-knowledge.org/downloads/yago-3), a large knowledge base derived from Wikipedia, and apply our embedding pipeline to generate vectors for many entities. These pretrained embeddings are readily available in parquet files that you can download [here](#downloading-entity-embeddings).
+To build embeddings that capture the information from Wikipedia we leverage [YAGO3](https://yago-knowledge.org/downloads/yago-3), a large knowledge base derived from Wikipedia, and apply our embedding pipeline to generate vectors for many entities. These pretrained embeddings are readily available in parquet files that you can download [here](#downloading-the-embeddings).
 
 ### YAGO3 and its embeddings
 YAGO3 is a large knowledge base derived from Wikipedia in multiple languages and other sources.
 It represents information about various entities (people, cities, companies...) in the form of a knowledge graph, *i.e.* a set of triples *(head, relation, tail)*, such as *(Paris, locatedIn, France)*.
-Overall, our version of YAGO3 contains **2.8 million** entities, described by **7.2 million** triples (including 1.6 million with numerical values, such as city populations or GPS coordinates).
+Overall, our 2022 version of YAGO3 contains **5.7 million** entities, described by **22.6 million** triples (including 7.8 million with numerical values, such as city populations or GPS coordinates).
 
 We learn 200-dimensional vectors for these entities, using as knowledge-graph embedding model MuRE (Balažević *et al.*, [2019](https://arxiv.org/abs/1905.09791)), which we combine with KEN to leverage numerical attributes.
-
-
