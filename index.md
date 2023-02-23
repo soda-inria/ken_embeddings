@@ -1,15 +1,15 @@
 
-# Embeddings to Bring Background Information
-
 <div class="flex-container">
-<div class="flex-highlight">
-    Cities, companies, people..
-</div>
 <div class="flex-highlight">
     5.8 million entities
 </div>
+<div class="flex-highlight">
+    Cities, companies, people...
+</div>
 </div>
 
+
+# Embeddings to Bring Background Information
 
 In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
 

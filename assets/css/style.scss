@@ -40,5 +40,14 @@ div.flex-highlight {
   width: 25ex;
   display: inline-block;
   text-align: center;
-  height: 1.8em;
+  min-height: 1.7em;
+  padding: .5ex;
+}
+
+@media only screen and (min-width: 1100px) {
+    div.flex-container {
+	position: absolute;
+	left: 2ex;
+	width: 20ex;
+    }
 }
