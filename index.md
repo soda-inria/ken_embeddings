@@ -51,7 +51,7 @@ We also provide tables with embeddings for *all* entities **(5.7 million)**, as 
 
 # How are these embeddings built?
 
-The [](https://link.springer.com/article/10.1007/s10994-022-06277-academic publication7) gives the full details; below we provide a short summary.
+The [academic publication](https://link.springer.com/article/10.1007/s10994-022-06277-7) gives the full details; below we provide a short summary.
 
 We represent the relational data on the entities as a **graph** and adapt
 graph-embedding methods to create feature vectors for each entity. We show that two technical ingredients are crucial: modeling well the different **relationships** between entities, and capturing **numerical** attributes. For this, we leverage **knowledge graph embedding** methods. Although they were primarily designed for graph completion purposes, we show that they can serve as powerful feature extractors. However, they only model discrete entities, while creating good feature vectors from relational data also requires capturing numerical attributes. We thus introduce **KEN** (**K**nowledge **E**mbedding with **N**umbers), a module that extends knowledge graph embedding models to numerical values.
