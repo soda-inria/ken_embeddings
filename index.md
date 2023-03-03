@@ -11,11 +11,11 @@
 
 # Embeddings to Bring Background Information
 
-In data science, we often encounter data on common entities, such as cities, companies, famous people... **Augmenting the data at hand with information assembled from external sources may be key to improving the analysis**. 
+For data science on common entities, such as cities, companies, famous people... **augmenting the data at hand with information assembled from external sources may be key**. 
 
 <img class="flush-left" src="assets/figures/aggregating.svg"/>
 
-For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in a knowledge source such as wikipedia. But assembling features that summarize the information across those many tables is tedious manual work, which we seek to replace.
+For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in external sources such as wikipedia. But assembling features that summarize the information is tedious manual work, which we seek to replace.
 
 We provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the information that can be aggregated across wikipedia. 
 
@@ -47,7 +47,11 @@ We also provide tables with embeddings for *all* entities **(5.7 million)**, as 
 * [entity_types](https://figshare.com/ndownloader/files/39143015)
 * [entity_detailed_types](https://figshare.com/ndownloader/files/39266300)
 
+<br/>
+
 # How are these embeddings built?
+
+The [https://link.springer.com/article/10.1007/s10994-022-06277-7](academic publication) gives the full detail; below we provide a short summary.
 
 We represent the relational data on the entities as a **graph** and adapt
 graph-embedding methods to create feature vectors for each entity. We show that two technical ingredients are crucial: modeling well the different **relationships** between entities, and capturing **numerical** attributes. For this, we leverage **knowledge graph embedding** methods. Although they were primarily designed for graph completion purposes, we show that they can serve as powerful feature extractors. However, they only model discrete entities, while creating good feature vectors from relational data also requires capturing numerical attributes. We thus introduce **KEN** (**K**nowledge **E**mbedding with **N**umbers), a module that extends knowledge graph embedding models to numerical values.
