@@ -28,7 +28,7 @@ used to reduce their dimension from 200 to 2.*
 
 <div class="flex-container">
 <div class="flex-highlight flex-large">
-[Example Python code to query and use the embeddings](https://dirty-cat.github.io/stable/auto_examples/07_ken_embeddings_example.html)
+<a href="https://dirty-cat.github.io/stable/auto_examples/07_ken_embeddings_example.html">Example Python code to query and use the embeddings</a>
 </div>
 </div>
 
