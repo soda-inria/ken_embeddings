@@ -26,6 +26,12 @@ used to reduce their dimension from 200 to 2.*
 
 ## Downloading the embeddings
 
+<div class="flex-container">
+<div class="flex-highlight flex-large">
+[Example Python code to query and use the embeddings](https://dirty-cat.github.io/stable/auto_examples/07_ken_embeddings_example.html)
+</div>
+</div>
+
 We give different tables for the embeddings of entities of various types
 (under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)):
 
@@ -40,8 +46,6 @@ We also provide tables with embeddings for *all* entities **(5.7 million)**, as 
 * [all_entities](https://figshare.com/ndownloader/files/39142985)
 * [entity_types](https://figshare.com/ndownloader/files/39143015)
 * [entity_detailed_types](https://figshare.com/ndownloader/files/39266300)
-
-[Example Python code to query and use these](https://dirty-cat.github.io/stable/auto_examples/07_ken_embeddings_example.html)
 
 # How are these embeddings built?
 

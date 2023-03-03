@@ -44,6 +44,16 @@ div.flex-highlight {
   padding: .5ex;
 }
 
+div.flex-large {
+    width: 30ex;
+    margin-right: 5%;
+}
+
+div.flex-highlight a {
+    color: white;
+    display: block;
+}
+
 .main-content h1:first-of-type {
     margin-top: 0px;
 }
