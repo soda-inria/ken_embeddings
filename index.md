@@ -20,7 +20,7 @@ For instance, estimating housing prices benefits from background information on 
 We provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the information that can be aggregated across wikipedia. 
 
 ![entity_types](assets/figures/entity_types_with_names.png)
-*2D visualization of entity embeddings learned from YAGO3, colored by
+*2D visualization of entity embeddings, colored by
 their types. [UMAP](https://umap-learn.readthedocs.io/en/latest/) was
 used to reduce their dimension from 200 to 2.*
 
@@ -63,7 +63,7 @@ We thoroughly evaluate approaches to enrich features with background information
 
 ## Embedding the data in Wikipedia
 
-To build embeddings that capture the information from Wikipedia we leverage [YAGO3](https://yago-knowledge.org/downloads/yago-3), a large knowledge base derived from Wikipedia, and apply our embedding pipeline to generate vectors for many entities. These pretrained embeddings are readily available in parquet files that you can download [here](#downloading-the-embeddings).
+To build embeddings that capture the information from Wikipedia we leverage [YAGO3](https://yago-knowledge.org/downloads/yago-3), a large knowledge base derived from Wikipedia, and apply our embedding pipeline to generate vectors for many entities.
 
 ### YAGO3 and its embeddings
 YAGO3 is a large knowledge base derived from Wikipedia in multiple languages and other sources.
