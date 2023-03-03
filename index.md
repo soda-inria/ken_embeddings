@@ -15,7 +15,7 @@ For data science on common entities, such as cities, companies, famous people...
 
 <img class="flush-left" src="assets/figures/aggregating.svg"/>
 
-For instance, estimating housing prices benefits from background information on the location, such as the population density or the average income. This information is present in external sources such as wikipedia. But assembling features that summarize the information is tedious manual work, which we seek to replace.
+For instance, estimating housing prices benefits from background information on the location: the population density, the average income... This information is present in external sources such as wikipedia. But assembling features that summarize the information is tedious manual work, which we seek to replace.
 
 We provide readily-computed **vectorial representations of entities** (*e.g.* cities) that capture the information that can be aggregated across wikipedia. 
 
